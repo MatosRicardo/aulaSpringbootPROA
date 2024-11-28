@@ -13,7 +13,7 @@ public class Sala {
     @Column(name = "nome_sala")
     private String nomeSala;
 
-    @Column(name = "nome_sala")
+    @Column(name = "capacidade_sala")
     private int capacidadeSala;
 
     public long getId() {

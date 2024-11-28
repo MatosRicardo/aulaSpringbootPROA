@@ -1,7 +1,6 @@
 package com.example.SistemaEscolar.model;
 
 import jakarta.persistence.*;
-import javafx.beans.binding.MapBinding;
 
 import java.util.Date;
 
