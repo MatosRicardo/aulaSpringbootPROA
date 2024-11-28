@@ -1,6 +1,7 @@
 package com.example.SistemaEscolar.model;
 
 import jakarta.persistence.*;
+import javafx.beans.binding.MapBinding;
 
 import java.util.Date;
 
@@ -14,7 +15,6 @@ public class Presenca {
 
     @Column(name = "data_presenca")
     private Date dataPresenca;
-
 
     public long getId() {
         return id;

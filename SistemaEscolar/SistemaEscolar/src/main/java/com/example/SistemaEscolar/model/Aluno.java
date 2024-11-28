@@ -20,6 +20,11 @@ public class Aluno {
     @Column(name = "data_nascimento_aluno")
     private Date dataNascimento;
 
+    @ManyToOne
+    private Professor professor;
+
+    @ManyToOne
+    private Sala sala;
 
     public long getId() {
         return id;
