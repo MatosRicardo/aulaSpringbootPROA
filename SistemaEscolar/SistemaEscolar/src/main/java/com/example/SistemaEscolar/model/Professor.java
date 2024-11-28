@@ -12,6 +12,7 @@ public class Professor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column (name = "pk_id_professor")
     private long id;
 
     @Column(name = "nome_professor")
