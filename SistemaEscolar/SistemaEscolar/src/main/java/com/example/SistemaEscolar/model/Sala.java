@@ -18,7 +18,7 @@ public class Sala {
     private String nomeSala;
 
     @Column(name = "capacidade_sala")
-    private int capacidadeSala;
+    private String capacidadeSala;
 
     @OneToMany(mappedBy = "sala")
     @JsonIgnore
@@ -40,11 +40,11 @@ public class Sala {
         this.nomeSala = nomeSala;
     }
 
-    public int getCapacidadeSala() {
+    public String getCapacidadeSala() {
         return capacidadeSala;
     }
 
-    public void setCapacidadeSala(int capacidadeSala) {
+    public void setCapacidadeSala(String capacidadeSala) {
         this.capacidadeSala = capacidadeSala;
     }
 
