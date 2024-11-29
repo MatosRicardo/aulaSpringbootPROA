@@ -38,7 +38,7 @@ public class AlunoController {
         }
         return null;
     }
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<String> deletarAluno(@PathVariable Long id) {
         if (alunoRepository.existsById(id)) {
             alunoRepository.deleteById(id);

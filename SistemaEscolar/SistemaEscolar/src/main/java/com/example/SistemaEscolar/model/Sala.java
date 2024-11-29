@@ -1,6 +1,7 @@
 package com.example.SistemaEscolar.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -22,6 +23,7 @@ public class Sala {
 
     @OneToMany(mappedBy = "sala")
     @JsonIgnore
+    @JsonManagedReference("salaReference")
     private List<Aluno> alunos;
 
     public long getId() {

@@ -24,12 +24,12 @@ public class Aluno {
 
     @ManyToOne
     @JoinColumn(name = "sala_id", nullable = false)
-    @JsonBackReference
+    @JsonBackReference ("salaReference")
     private Sala sala;
 
     @ManyToOne
     @JoinColumn(name = "professor_id", referencedColumnName = "pk_id_professor", nullable = false)
-    @JsonBackReference
+    @JsonBackReference ("professorReference")
     private Professor professor;
 
     public long getId() {

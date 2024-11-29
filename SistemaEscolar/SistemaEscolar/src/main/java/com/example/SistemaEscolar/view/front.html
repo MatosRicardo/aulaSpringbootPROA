@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste Sistema Escolar</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Sistema Escolar</h1>
+
+
+        <div class="form-container">
+            <h2>Cadastro de Aluno</h2>
+            <form id="formAluno">
+                <input type="text" id="nome" placeholder="Nome" required>
+                <input type="number" id="idade" placeholder="Idade" required>
+                <input type="number" id="salaId" placeholder="ID da Sala" required>
+                <input type="number" id="professorId" placeholder="ID do Professor" required>
+                <button type="submit" class="btn">Cadastrar</button>
+            </form>
+        </div>
+
+
+        <div class="list-container">
+            <h2>Lista de Alunos</h2>
+            <button class="btn" id="listarAlunos">Listar Alunos</button>
+            <ul id="listaAlunos"></ul>
+        </div>
+    </div>
+
+    <script>
+
+        document.getElementById('formAluno').addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const aluno = {
+                nome: document.getElementById('nome').value,
+                idade: parseInt(document.getElementById('idade').value),
+                sala: { id: parseInt(document.getElementById('salaId').value) },
+                professor: { id: parseInt(document.getElementById('professorId').value) }
+            };
+
+            try {
+                const response = await fetch('http://localhost:8080/alunos', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(aluno)
+                });
+
+                if (response.ok) {
+                    alert('Aluno cadastrado com sucesso!');
+                    document.getElementById('formAluno').reset();
+                } else {
+                    alert('Erro ao cadastrar aluno.');
+                }
+            } catch (error) {
+                console.error('Erro na requisição:', error);
+            }
+        });
+
+
+        document.getElementById('listarAlunos').addEventListener('click', async () => {
+            try {
+                const response = await fetch('http://localhost:8080/alunos');
+                if (response.ok) {
+                    const alunos = await response.json();
+                    const listaAlunos = document.getElementById('listaAlunos');
+                    listaAlunos.innerHTML = '';
+                    alunos.forEach(aluno => {
+                        const li = document.createElement('li');
+                        li.textContent = `ID: ${aluno.id} - Nome: ${aluno.nome} - Idade: ${aluno.idade} - Sala: ${aluno.sala?.nome} - Professor: ${aluno.professor?.nome}`;
+                        listaAlunos.appendChild(li);
+                    });
+                } else {
+                    alert('Erro ao listar alunos.');
+                }
+            } catch (error) {
+                console.error('Erro na requisição:', error);
+            }
+        });
+    </script>
+</body>
+</html>
