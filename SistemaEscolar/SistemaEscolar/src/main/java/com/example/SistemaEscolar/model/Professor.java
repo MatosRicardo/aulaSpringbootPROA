@@ -1,9 +1,11 @@
 package com.example.SistemaEscolar.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "tb_professor")
@@ -20,6 +22,10 @@ public class Professor {
 
     @Column(name = "email_professor")
     private String emailProfessor;
+
+    @OneToMany(mappedBy = "professor")
+    @JsonIgnore
+    private List<Aluno> alunos;
 
     public long getId() {
         return id;
@@ -43,5 +49,13 @@ public class Professor {
 
     public void setEmailProfessor(String emailProfessor) {
         this.emailProfessor = emailProfessor;
+    }
+
+    public List<Aluno> getAlunos() {
+        return alunos;
+    }
+
+    public void setAlunos(List<Aluno> alunos) {
+        this.alunos = alunos;
     }
 }
