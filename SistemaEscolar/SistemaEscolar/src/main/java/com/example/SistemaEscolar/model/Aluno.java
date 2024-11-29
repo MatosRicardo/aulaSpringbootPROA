@@ -28,7 +28,7 @@ public class Aluno {
     private Sala sala;
 
     @ManyToOne
-    @JoinColumn(name = "professor_id", referencedColumnName = "pk_id_professor", nullable = false)
+    @JoinColumn(name = "professor_id")
     @JsonBackReference ("professorReference")
     private Professor professor;
 
